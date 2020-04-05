@@ -4,6 +4,11 @@
     <title>vue- step 3</title>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      .red {
+        color: red;
+      }
+    </style>
   </head>
   <body>
     <div id="root">
@@ -19,7 +24,13 @@
         placeholder="type new name and click Add button"
         v-model="newPerson"
       />
-      <button @click="onAdd">Add</button>
+      <button
+        @click="onAdd"
+        :class="{'red': showRedButton}"
+        :title="buttonTitle"
+      >
+        Add
+      </button>
     </div>
 
     <script>
@@ -31,12 +42,19 @@
             { name: "pera" },
             { name: "laza", age: 32 }
           ],
-          newPerson: null
+          newPerson: null,
+          showRedButton: false,
+          buttonTitle: "click to add"
         },
         methods: {
           onAdd() {
             app.persons.push({ name: app.newPerson });
             app.newPerson = "";
+            app.showRedButton = true;
+          },
+          onHover() {
+            alert("on hover");
+            app.buttonTitle = "im hoovering...";
           }
         },
         mounted() {
