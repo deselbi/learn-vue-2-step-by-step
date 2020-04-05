@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>vue- stap 1</title>
+    <title>vue- step 3</title>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
@@ -14,15 +14,12 @@
         </li>
       </ul>
 
-      <ul>
-        <li
-          v-for="person in persons"
-          v-text="person.name + ' ' +  person.age"
-        ></li>
-      </ul>
-
-      <input type="text" v-model="newPerson" />
-      <button>aDD</button>
+      <input
+        type="text"
+        placeholder="type new name and click Add button"
+        v-model="newPerson"
+      />
+      <button @click="onAdd">Add</button>
     </div>
 
     <script>
@@ -35,6 +32,12 @@
             { name: "laza", age: 32 }
           ],
           newPerson: null
+        },
+        methods: {
+          onAdd() {
+            app.persons.push({ name: app.newPerson });
+            app.newPerson = "";
+          }
         },
         mounted() {
           console.log("mounted");
