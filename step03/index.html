@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vue- stap 1</title>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <ul>
+        <li v-for="person in persons">
+          {{ person.name }}
+          {{ person.age }}
+        </li>
+      </ul>
+
+      <ul>
+        <li
+          v-for="person in persons"
+          v-text="person.name + ' ' +  person.age"
+        ></li>
+      </ul>
+
+      <input type="text" v-model="newPerson" />
+      <button>aDD</button>
+    </div>
+
+    <script>
+      let app = new Vue({
+        el: "#root",
+        data: {
+          persons: [
+            { name: "mika", age: 123 },
+            { name: "pera" },
+            { name: "laza", age: 32 }
+          ],
+          newPerson: null
+        },
+        mounted() {
+          console.log("mounted");
+        }
+      });
+    </script>
+  </body>
+</html>
