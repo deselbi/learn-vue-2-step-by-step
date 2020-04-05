@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vue step 6</title>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      .red {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      all tasks
+      <ul>
+        <li v-for="task in tasks" :class="{'red': !task.done }">
+          {{ task.description }}
+          <input type="radio" :checked="task.done" @change="toggle" />
+        </li>
+      </ul>
+
+      incomplete tasks
+      <ul>
+        <li v-for="task in incompleteTasks" class="red">
+          {{ task.description }}
+        </li>
+      </ul>
+
+      complete tasks
+      <ul>
+        <li v-for="task in completeTasks" class="green">
+          {{ task.description }}
+        </li>
+      </ul>
+
+      uncompleted tasks
+      <ul>
+        <li
+          v-for="task in tasks"
+          v-if="!task.done"
+          :class="{'red': !task.done }"
+        >
+          {{ task.description }}
+        </li>
+      </ul>
+      completed tasks
+      <ul>
+        <li
+          v-for="task in tasks"
+          v-if="task.done"
+          :class="{'red': !task.done }"
+        >
+          {{ task.description }}
+        </li>
+      </ul>
+
+      <input
+        type="text"
+        @change="onChange"
+        @keypress="onChange"
+        placeholder="type new description and click Add button"
+        v-model="newTask"
+      />
+      <button
+        @click="onAdd"
+        :class="{'red': showRedButton}"
+        :title="buttonTitle"
+        :disabled="disabled"
+      >
+        Add
+      </button>
+
+      <p>button is disabled: {{ disabled }}</p>
+    </div>
+
+    <script>
+      let app = new Vue({
+        el: "#root",
+        data: {
+          tasks: [
+            { description: "mika", done: false },
+            { description: "pera", done: true },
+            { description: "laza", done: false }
+          ],
+          newTask: "",
+          showRedButton: false,
+          buttonTitle: "click to add",
+          disabled: false
+        },
+        computed: {
+          incompleteTasks() {
+            return this.tasks.filter(task => !task.done);
+          },
+          completeTasks() {
+            return this.tasks.filter(task => !task.done);
+          }
+        },
+        methods: {
+          toggle(taks) {
+            console.log(taks);
+            task.done = !task.done;
+          },
+          onAdd() {
+            app.tasks.push({ description: app.newTask });
+            app.newTask = "";
+            app.showRedButton = true;
+          },
+          onChange() {
+            this.disabled = this.newTask.length == 0;
+          },
+          onHover() {
+            app.buttonTitle = "im hoovering...";
+          }
+        },
+        mounted() {
+          this.onChange();
+        }
+      });
+    </script>
+  </body>
+</html>
