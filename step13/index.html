@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>vue step 13</title>
+
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
+</head>
+
+<body>
+
+<div id="root" class="container">
+
+ <coupon @applied="onCouponApplied"> </coupon>
+
+  <p v-if="couponApplied"> Coupon {{coupon}} applied </p>
+
+</div>
+
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="main.js"></script>
+
+
+</body>
+
+</html>
