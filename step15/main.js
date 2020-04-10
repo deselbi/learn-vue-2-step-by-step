@@ -1,6 +1,6 @@
 
 
-Vue.component('progress-view', {
+Vue.component('progresss', {
 
   data() {
     return {
