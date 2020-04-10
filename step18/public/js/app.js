@@ -3,9 +3,15 @@
 new Vue({
     el: "#root",
 
+    data: {
+        skills: []
+    },
+
     mounted() {
 
-        alert("mojnted!@!");
+        axios.get('/skills').then(
+            response => this.skills = response.data
+        );
     }
 
 });
