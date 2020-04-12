@@ -21,7 +21,14 @@ class Errors {
         delete this.errors[field]
     }
 
+    has (field){
+        return this.errors.hasOwnProperty(field);
 
+    }
+
+    any() {
+        return Object.keys(this.errors).length > 0;
+    }
 };
 
 new Vue({
@@ -44,13 +51,14 @@ new Vue({
                 .then(this.onSuccess)
                 .catch(  error =>  {
                     this.errors.record( error.response.data.errors) ;
-                    alert( error.response.data.message )
+
                 });
 
         },
 
         onSuccess(response) {
             alert(response.data.message);
+            this.project = { name: "", description: ""};
 
         }
     },
