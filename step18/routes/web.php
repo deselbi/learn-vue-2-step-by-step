@@ -23,3 +23,8 @@ Route::get('skills', function () {
       'laravel', 'view', 'php'
   ];
 });
+
+
+
+Route::get('projects/create', 'ProjectsController@create');
+Route::post('projects', 'ProjectsController@store');
