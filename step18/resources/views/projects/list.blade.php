@@ -4,7 +4,7 @@
     <ul>
         @foreach ($projects as $project)
             <li>
-                <a href="#">{{ $project->name }}</a>
+                <a href="#">{{ $project->name }} {{ $project->description }}</a>
             </li>
         @endforeach
     </ul>

@@ -31,36 +31,77 @@ class Errors {
     }
 };
 
+
+
+class ProjectForm {
+
+    constructor() {
+
+        this.reset();
+
+        this.errors = new Errors();
+
+        this.onSuccess.bind(this);
+
+        this.buttonClass = "";
+    }
+
+    reset(){
+        this.name =  "";
+        this.description ="";
+    }
+
+    submit(requestType, url) {
+
+
+        let { name, description } = this;  // the fields you want
+        let data = { name, description  };
+        this.buttonClass = "is-loading";
+            axios[requestType](url, data)
+            .then(this.onSuccess)
+            .catch(  error =>  {
+                if(error.response.status == 422) {
+                    this.errors.record( error.response.data.errors) ;
+                } else {
+                    alert(error.response.data.message);
+                }
+
+                this.buttonClass = "";
+
+            });
+
+    }
+
+    onSuccess = (response) => {
+        alert(response.data.message);
+        console.log(response);
+        this.reset();
+
+        this.buttonClass = "";
+    }
+
+};
+
 new Vue({
     el: "#root",
 
     data: {
         skills: [],
 
-        project: {
-            name: "",
-            description: ""
-        },
-        errors: new Errors()
+        project: new ProjectForm(),
+
 
     },
 
     methods: {
         onSubmit() {
-            axios.post('/projects', this.$data.project)
-                .then(this.onSuccess)
-                .catch(  error =>  {
-                    this.errors.record( error.response.data.errors) ;
 
-                });
+            this.$data.project.submit( 'post','/projects');
+
 
         },
 
-        onSuccess(response) {
-            alert(response.data.message);
-            this.project = { name: "", description: ""};
 
-        }
     },
     mounted() {
 
