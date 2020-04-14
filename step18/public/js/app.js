@@ -43,7 +43,7 @@ class ProjectForm {
 
         this.onSuccess.bind(this);
 
-        this.buttonClass = "";
+
     }
 
     reset(){
@@ -53,31 +53,41 @@ class ProjectForm {
 
     submit(requestType, url) {
 
+        return new Promise((resolve, reject ) => {
 
-        let { name, description } = this;  // the fields you want
-        let data = { name, description  };
-        this.buttonClass = "is-loading";
+            let { name, description } = this;  // the fields you want
+            let data = { name, description  };
+
             axios[requestType](url, data)
-            .then(this.onSuccess)
-            .catch(  error =>  {
-                if(error.response.status == 422) {
-                    this.errors.record( error.response.data.errors) ;
-                } else {
-                    alert(error.response.data.message);
-                }
+                .then( response => {
+                    this.onSuccess(response);
+                    resolve(response.data);
+                })
+                .catch(  error =>  {
 
-                this.buttonClass = "";
+                    if(error.response.status == 422) {
+                        this.errors.record( error.response.data.errors) ;
+                    } else {
+                        alert(error.response.data.message);
+                    }
 
-            });
+                    reject(error.response.data);
+                    this.buttonClass = "";
+
+                });
+
+
+        });
+
 
     }
 
     onSuccess = (response) => {
-        alert(response.data.message);
+
         console.log(response);
         this.reset();
-
         this.buttonClass = "";
+
     }
 
 };
@@ -90,17 +100,26 @@ new Vue({
 
         project: new ProjectForm(),
 
+        buttonClass : "34"
 
     },
 
     methods: {
         onSubmit() {
 
-            this.$data.project.submit( 'post','/projects');
+            this.$data.buttonClass = "is-loading";
+            this.$data.project.submit( 'post','/projects')
+                .then( (data) => {
+                    console.log(data);
+                    this.$data.buttonClass = "";
+                }  )
+                .catch((data) => {
+                    console.log(data);
+                    this.$data.buttonClass  = "";
+                });
 
 
         },
-
 
     },
     mounted() {

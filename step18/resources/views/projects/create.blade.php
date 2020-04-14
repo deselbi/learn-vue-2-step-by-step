@@ -10,11 +10,9 @@
 <body>
 <div id="root" class="container">
 
-
-
     @include ('projects.list')
 
-    <form method="POST" action="/projects" @submit.prevent="onSubmit" @keydown="project.errors.clear($event.target.name)">
+    <form  method="POST" action="/projects" @submit.prevent="onSubmit" @keydown="project.errors.clear($event.target.name)">
         <div class="control">
             <label for="name" class="label">Project Name:</label>
 
@@ -23,7 +21,7 @@
             <span class="help is-danger" v-if="project.errors.has('name')" v-text="project.errors.get('name')"></span>
         </div>
 
-        <div class="control">
+        <div class="control" class="is-danger">
             <label for="description" class="label">Project Description:</label>
 
             <input type="text" id="description" name="description" class="input" v-model="project.description" >
@@ -32,7 +30,7 @@
         </div>
 
         <div class="control">
-            <button class="button is-primary"  v-bind:class="project.buttonClass" :disabled="project.errors.any()" >Create</button>
+            <button class="button is-primary"  v-bind:class="buttonClass" :disabled="project.errors.any()" >Create</button>
         </div>
     </form>
 </div>
