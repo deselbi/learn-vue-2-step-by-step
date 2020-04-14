@@ -6,7 +6,7 @@ let path = require('path');
 console.log(path.resolve(__dirname).concat('/public/js'));
 
 module.exports =  {
-
+    mode: 'development',
     entry: './resources/js/app.js',
     output: {
         path: path.resolve(__dirname).concat('/public/js'),
