@@ -7,10 +7,13 @@ let path = require('path');
 
 module.exports =  {
     mode: process.env.NODE_ENV,
-    entry: './resources/js/app.js',
+    entry: {
+        app: './resources/js/app.js',
+        vendor: ['vue', 'axios']
+    },
     output: {
         path: path.resolve(__dirname).concat('/public/js'),
-        filename: 'bundle.js',
+        filename: '[name].js',
         publicPath: './public'
     },
 

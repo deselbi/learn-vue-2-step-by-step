@@ -37,12 +37,6 @@
 </div>
 
 
-<script src="/js/bundle.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>
-<script>
-    import Example from "../../js/comonents/Example";
-    export default {
-        components: {Example}
-    }
-</script>
