@@ -4,15 +4,17 @@
         "webpack": "webpack --hide-modules",
         "webpackdev": "webpack --hide-modules --watch",
         "dev": "npm run development",
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "development": "export NODE_ENV=development && ./node_modules/.bin/webpack ",
         "watch": "npm run development -- --watch",
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "export NODE_ENV=production && ./node_modules/.bin/webpack ",
+        "oldproduction": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
         "axios": "^0.19.2",
+        "babel-loader": "^8.1.0",
         "cross-env": "^7.0",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.13",
@@ -20,9 +22,11 @@
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0",
         "vue": "^2.6.11",
-        "vue-loader": "^15.9.1"
+        "vue-loader": "^15.9.1",
+        "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
-        "webpack": "^4.42.1"
+        "webpack": "^4.42.1",
+        "uglifyjs-webpack-plugin": "^2.2.0"
     }
 }

@@ -10,6 +10,7 @@
 <body>
 <div id="root" class="container">
 
+    <example></example>
     @include ('projects.list')
 
     <form  method="POST" action="/projects" @submit.prevent="onSubmit" @keydown="project.errors.clear($event.target.name)">
@@ -39,3 +40,9 @@
 <script src="/js/bundle.js"></script>
 </body>
 </html>
+<script>
+    import Example from "../../js/comonents/Example";
+    export default {
+        components: {Example}
+    }
+</script>

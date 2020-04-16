@@ -3,8 +3,14 @@ import axios from 'axios';
 
 import ProjectForm from './core/ProjectForm'
 
+import Example from './components/Example';
+
 new Vue({
     el: "#root",
+
+    components: {
+        Example
+    },
 
     data: {
         skills: [],
