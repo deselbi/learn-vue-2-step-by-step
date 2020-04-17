@@ -2,7 +2,8 @@
 let source = {
     user  :  {
         name: "John Doe one and only"
-    }
+    },
+    coupon: "coupon value"
 };
 
 new Vue({
@@ -10,7 +11,7 @@ new Vue({
     el: "#one",
 
     data: {
-        user: source.user
+        source: source
 
     }
 });
@@ -21,7 +22,7 @@ new Vue({
     el: "#two",
 
     data: {
-        user: source.user
+        source: source
 
     }
 });

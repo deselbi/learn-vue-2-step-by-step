@@ -14,13 +14,16 @@
        <div class="content">
             content:
        <div id="one">
-           <div >@{{user.name}}</div>
-           <input type="text" v-model="user.name">
+           <div >1 @{{source.user.name}}</div>
+           <input type="text" v-model="source.user.name">
+
+           <input type="text" v-model="source.coupon">
+            <span v-text="source.coupon"></span>
        </div>
 
            <div id="two">
-               <div>@{{user.name}}</div>
-               <input type="text" v-model="user.name">
+               <div>2 @{{source.user.name}}</div>
+               <input type="text" v-model="source.user.name">
            </div>
 
        </div>
