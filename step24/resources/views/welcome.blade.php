@@ -13,18 +13,11 @@
 
        <div class="content">
             content:
-       <div id="one">
-           <div >1 @{{source.user.name}}</div>
-           <input type="text" v-model="source.user.name">
-
-           <input type="text" v-model="source.coupon">
-            <span v-text="source.coupon"></span>
-       </div>
-
-           <div id="two">
-               <div>2 @{{source.user.name}}</div>
-               <input type="text" v-model="source.user.name">
+           <div id="root">
+                <span v-text="source.coupon"></span>
+               c:<coupon v-model="source.coupon"></coupon>
            </div>
+
 
        </div>
        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

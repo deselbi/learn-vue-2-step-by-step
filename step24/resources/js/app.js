@@ -1,14 +1,38 @@
 
+
+
 let source = {
     user  :  {
         name: "John Doe one and only"
     },
-    coupon: "coupon value"
+    coupon: "X23SZXD"
 };
 
+
+
+Vue.component('coupon', {
+    props: ['code'],
+
+    template: `
+    <input type="text" :value="code" @input="updateCode($event.target.value)" ref="input"> 
+    `,
+
+    methods: {
+
+        updateCode(code){
+            code=code.toLowerCase();
+            this.$refs.input.value = code;
+            this.$emit('input', code);
+        }
+    }
+
+});
+
+
+
 new Vue({
 
-    el: "#one",
+    el: "#root",
 
     data: {
         source: source
@@ -16,13 +40,3 @@ new Vue({
     }
 });
 
-
-new Vue({
-
-    el: "#two",
-
-    data: {
-        source: source
-
-    }
-});
