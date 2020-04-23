@@ -101,11 +101,14 @@ var source = {
 };
 Vue.component('coupon', {
   props: ['code'],
-  template: "\n    <input type=\"text\" :value=\"code\" @input=\"updateCode($event.target.value)\" ref=\"input\"> \n    ",
+  template: "\n    <input type=\"text\"\n     :value=\"code\" \n     @input=\"updateCode($event.target.value, $event.target)\" \n     ref=\"input\"> \n    ",
   methods: {
-    updateCode: function updateCode(code) {
+    updateCode: function updateCode(code, target) {
       code = code.toLowerCase();
+      position = target.selectionStart;
       this.$refs.input.value = code;
+      this.$refs.input.selectionStart = position;
+      this.$refs.input.selectionEnd = position;
       this.$emit('input', code);
     }
   }
