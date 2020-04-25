@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>m vue laracast step 26</title>
+    <title>{{config('app.name')}}</title>
 
     <link rel="stylesheet" href="/css/app.css">
 
@@ -16,7 +16,6 @@
 <div id="app">
 
     @include('layouts.header')
-
 
         <div class="section">
             <div class="container">
