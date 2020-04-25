@@ -16,3 +16,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/statuses', function () {
+    return [
+        [
+            "user" => [
+                'name' => 'Joe'
+            ],
+            'body' => "This is status x",
+            'updated_at' => "2020-03-04 14:12:13"
+        ],
+        [
+            "user" => [
+                'name' => 'Jane'
+            ],
+            'body' => "This is status Y",
+            'updated_at' => "2020-04-24 14:12:13"
+        ]
+    ];
+});

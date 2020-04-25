@@ -30,10 +30,15 @@ new Vue({
 
     },
 
+    created() {
+      // alert('created');
+    },
+
     mounted() {
+        //alert('mounted');
         let res = axios.get("http://dummy.restapiexample.com/api/v1/employees").then( result => {
             console.log(result.data);
-            source.data = result.data;
+            source.employees = result.data;
         });
 
         console.log(res);

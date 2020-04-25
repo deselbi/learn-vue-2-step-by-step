@@ -1,12 +1,15 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">The About Page</div>
+        <div class="columns">
+            <div class="column">
+                <div class="message" v-for="status in statuses">
+                    <div class="message-header">
+                        <p> {{ status.user.name}} </p>
+                        <p> {{ moment(status.updated_at).fromNow()}} </p>
+                    </div>
 
-                    <div class="panel-body">
-                        this is contacts page
+                    <div class="message-body">
+                        {{ status.body }}
                     </div>
 
 
@@ -17,10 +20,30 @@
 </template>
 
 <script>
+
+    import moment from 'moment';
+
+
     export default {
 
+        data() {
+            return {
+                statuses: []
+            }
+        },
+
+
+
+        methods: {
+
+            moment(input) {
+                return moment(input);
+            }
+        },
+
         created() {
-            // axios call here.
+            axios.get('/statuses')
+                .then( ({data}) => this.statuses = data);
         }
     }
 </script>
