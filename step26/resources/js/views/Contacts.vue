@@ -5,7 +5,7 @@
                 <div class="message" v-for="status in statuses">
                     <div class="message-header">
                         <p> {{ status.user.name}} </p>
-                        <p> {{ moment(status.updated_at).fromNow()}} </p>
+                        <p> {{ status.updated_at | ago}} </p>
                     </div>
 
                     <div class="message-body">
@@ -32,7 +32,11 @@
             }
         },
 
-
+        filters: {
+            ago(date) {
+                return moment(date).fromNow();
+            }
+        },
 
         methods: {
 
